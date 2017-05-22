@@ -1,6 +1,6 @@
 // custom auth package
 export default function(Vue) {
-	
+
 	Vue.auth = {
 		// set token
 		setToken: (token, expiration) => {
@@ -16,6 +16,10 @@ export default function(Vue) {
 
 
 		// destroy token
+		destroyToken: () => {
+			localStorage.removeItem('token')
+			localStorage.removeItem('expiration')
+		},
 
 
 		// isAuthenticated
