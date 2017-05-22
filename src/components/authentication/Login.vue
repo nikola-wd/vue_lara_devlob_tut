@@ -55,10 +55,12 @@
 					password: this.password,
 				};
 
-				this.$http.post('http://127.0.0.1:8000/oauth/token', data) // post data
+				this.$http.post('oauth/token', data) // post data
 					.then(response => {
 					   this.$auth.setToken(response.body.access_token, response.body.expires_in + Date.now());
-					   console.log(response);
+
+					   // after user is authenticated redirect to /feed
+					   this.$router.push('/feed');
 					}); // end:then
 			} // login()
 		}
