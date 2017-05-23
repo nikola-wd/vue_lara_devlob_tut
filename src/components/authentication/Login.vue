@@ -53,7 +53,7 @@
 					grant_type: 'password',
 					username: this.email,
 					password: this.password,
-				};
+				}
 
 				this.$http.post('oauth/token', data) // post data
 					.then(response => {

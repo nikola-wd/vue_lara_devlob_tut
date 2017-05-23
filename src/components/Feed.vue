@@ -3,7 +3,7 @@
 	<div>
 		<h1>Feed</h1>
 		<ul>
-			<li v-for"product in products">
+			<li v-for="product in products">
 				{{ product.name }}
 			</li>
 		</ul>
