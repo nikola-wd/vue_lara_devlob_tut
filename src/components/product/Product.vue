@@ -23,7 +23,7 @@
 				<a href="#" 
 					class="btn btn-danger" 
 					role="button"
-					@click="deleteProduct">
+					@click="$emit('delete-product')"> <!-- we use emit to alert the parent component so the actual product will be deleted form the DOM as well -->
 						Delete
 				</a>
 			</p>
@@ -35,33 +35,8 @@
 
 
 <script>
-	import swal from 'sweetalert'
-
 	export default {
-		props: ['product', 'authenticatedUser'], // expects authenticatedUser that is defined in Products component
-
-		methods: {
-			deleteProduct() {
-				swal({
-				  title: "Are you sure?",
-				  text: "You will not be able to this product!",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "Yes, delete it!",
-				  closeOnConfirm: false
-				},
-
-				function(){
-				  this.$http.delete('api/products/' + this.product.id)
-				  	.then(response => {
-				  		console.log(response);
-				  		swal("Deleted!", "Your product has been deleted.", "success");
-				  	});
-				}.bind(this)
-				);
-			}
-		}
+		props: ['product', 'authenticatedUser'] // expects authenticatedUser that is defined in Products component
 	}
 </script>
 
