@@ -5,7 +5,7 @@
 
 			<div class="caption">
 				{{ product.user_id }}
-				
+
 				<h3>{{ product.name }}</h3>
 				<p>{{ product.price }}</p>
 			</div>
@@ -25,7 +25,7 @@
 
 <script>
 	export default {
-		props: ['product']
+		props: ['product', 'authenticatedUser'] // expects authenticatedUser that is defined in Products component
 	}
 </script>
 

@@ -2,6 +2,7 @@
 	<div class="row">
 		<my-product 
 			v-for="product in products"
+			:authenticatedUser="authenticatedUser"
 			:product="product">
 		</my-product>
 	</div>
@@ -22,6 +23,14 @@
 		data() {
 			return {
 				products: []
+			}
+
+		},
+
+
+		computed: {
+			authenticatedUser() {
+				return this.$auth.getAuthenticatedUser() // comp props observes for changes and react
 			}
 		},
 

@@ -49,7 +49,7 @@
 						this.$auth.setAuthenticatedUser(response.body)
 
 						// verifying that it works
-						console.log(this.$auth.getAuthenticatedUser())
+						// console.log(this.$auth.getAuthenticatedUser())
 					})
 			}
 		}
