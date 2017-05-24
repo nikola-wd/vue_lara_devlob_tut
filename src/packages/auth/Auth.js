@@ -1,6 +1,8 @@
 // custom auth package
 export default function(Vue) {
 
+	let setAuthenticatedUser = {};
+
 	Vue.auth = {
 		// set token
 		setToken (token, expiration) {
@@ -44,6 +46,17 @@ export default function(Vue) {
 			} else {
 				return false;
 			}
+		},
+
+
+
+		setAuthenticatedUser(data) {
+			setAuthenticatedUser = data;
+		},
+
+
+		getAuthenticatedUser() {
+			return setAuthenticatedUser;
 		}
 	} // Vue.auth
 

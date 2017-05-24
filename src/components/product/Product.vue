@@ -4,6 +4,8 @@
 			<img src="http://placehold.it/100x100" alt="" />
 
 			<div class="caption">
+				{{ product.user_id }}
+				
 				<h3>{{ product.name }}</h3>
 				<p>{{ product.price }}</p>
 			</div>
