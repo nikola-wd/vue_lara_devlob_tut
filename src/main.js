@@ -2,11 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import Router from './routes.js'
 import VueResource from 'vue-resource'
+import VeeValidate from 'vee-validate'
 
 import Auth from './packages/auth/Auth.js'
 
 Vue.use(VueResource)
 Vue.use(Auth)
+Vue.use(VeeValidate)
 
 // define root of the app
 Vue.http.options.root = 'http://127.0.0.1:8000';

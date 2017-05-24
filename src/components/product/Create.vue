@@ -3,28 +3,53 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="form-group">
+					<form @submit.prevent="create">
+						<div class="form-group">
 						<label>Name:</label>
-						<input type="text" class="form-control" 
+						<input 
+							name="name" 
+							type="text" 
+							class="form-control" 
+							v-validate="'required'"
 							v-model="product.name" />
+						<div class="help-block alert alert-danger" 
+							v-show="errors.has('name')">
+							{{ errors.first('name') }}
+						</div>
 					</div>
 
 					<div class="form-group">
 						<label>Price:</label>
-						<input type="number" class="form-control" 
+						<input 
+							name="price" 
+							type="number" 
+							class="form-control" 
+							v-validate="'max_value:50|min_value:1'"
 							v-model="product.price" />
+						<div class="help-block alert alert-danger" 
+							v-show="errors.has('price')">
+							{{ errors.first('price') }}
+						</div>
 					</div>
 
 					<div class="form-group">
 						<label>Description:</label>
-						<textarea class="form-control" 
+						<textarea 
+							name="description"
+							class="form-control" 
+							v-validate="'required'"
 							v-model="product.description"></textarea>
+						<div class="help-block alert alert-danger" 
+							v-show="errors.has('description')">
+							{{ errors.first('description') }}
+						</div>
 					</div>
 
-					<button class="btn btn-success btn-block"
-						@click="create"
-						v-show="product.name && product.price && product.description">
-							Create</button>
+						<input 
+							type="submit" 
+							class="btn btn-success btn-block"
+							value="Create" />
+					</form>
 				</div>
 			</div>
 		</div>
@@ -55,10 +80,24 @@
 
 		methods: {
 			create() {
-				this.$http.post('api/products', this.product)
+				this.$validator.updateDictionary({
+					'sr_RS' : {
+						attributes: {
+							name: 	     'ime',
+							price: 	    'cena',
+							description: 'opis'
+						}
+					}
+				});
+
+				this.$validator.setLocale('sr_RS');
+
+				this.$validator.validateAll().then(() => {
+					this.$http.post('api/products', this.product)
 					.then(response => {
 						this.$router.push('/feed'); // redirect after sucessful creation
 					})
+				});
 			}
 		}
 	}
