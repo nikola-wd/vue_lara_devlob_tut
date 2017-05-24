@@ -17,7 +17,21 @@ Vue.http.options.root = 'http://127.0.0.1:8000';
 Vue.http.interceptors.push((request, next) => {
 	request.headers.set('Authorization', 'Bearer ' + Vue.auth.getToken())
 	next()
-})
+});
+
+
+
+
+// interceptors (in between every request, response), global, works in every component
+Vue.http.interceptors.push((request, next) => {
+	next(response => {
+		if(response.status == 404) {
+			swal(response.status.toString(), response.body.error, 'error');
+		} else if(response.status == 500) {
+			swal(response.status.toString(), 'We are experiencing a problem with our servers!', 'error');
+		}
+	})
+});
 
 
 

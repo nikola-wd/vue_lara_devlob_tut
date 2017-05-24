@@ -26,6 +26,11 @@
 					@click="$emit('delete-product')"> <!-- we use emit to alert the parent component so the actual product will be deleted form the DOM as well -->
 						Delete
 				</a>
+
+				<router-link class="btn btn-success"
+					:to="'/products/' + product.id + '/edit'">
+					Edit
+				</router-link>
 			</p>
 		</div>
 	</div>
